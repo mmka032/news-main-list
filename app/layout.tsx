@@ -1,6 +1,6 @@
 import "./globals.css";
 
-export const metdata = { title : "Next.js x Gnews"}
+export const metadata = { title : "Next.js x Gnews"}
 
 export default function RootLayout({children,}:{children: React.ReactNode;}) {
   return (
@@ -17,11 +17,11 @@ export default function RootLayout({children,}:{children: React.ReactNode;}) {
         }}>
 
           <strong>Next.js x Gnews</strong>
-          
+
         </header>
 
         <main style={{
-           maxWidth: "960",
+           maxWidth: "960px",
            margin: "16px auto", 
            padding: "0 12px" 
         }}>

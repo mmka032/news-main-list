@@ -1,36 +1,47 @@
-// サーバーからのレスポンス
-import { error } from "console";
-import { NextRequest, NextResponse } from "next/server";
-import { start } from "repl";
+import { NextResponse } from "next/server";
 
-const BASE = "https://gnews.io/api/v4/top-headlines"
+const BASE = "https://gnews.io/api/v4/top-headlines";
 
 export async function GET(req: Request) {
-    
-    const {searchParams} = new URL(req.url)
-    const q = searchParams.get("q") || "";
-    const topic = searchParams.get("topic") || "";
-    const lang = searchParams.get("lang") || "ja";
-    const country = searchParams.get("country") || "ja";
-    const max = searchParams.get("max") || "10";
+  const { searchParams } = new URL(req.url);
+  const q = searchParams.get("q") || "";
+  const topic = searchParams.get("topic") || "";
+  const lang = searchParams.get("lang") || "ja";
+  const country = searchParams.get("country") || "jp";
+  const max = searchParams.get("max") || "10";
 
-const token = process.env.GNEWS_API_KEY;
-if(!token){
-    return NextResponse.json({ error: "missing api key" }, {status: 500})
-}
+  const token = process.env.GNEWS_API_KEY;
+  if (!token) {
+    return NextResponse.json({ error: "missing api" }, { status: 500 });
+  }
 
-const params = new URLSearchParams({
-    lang, country, topic, max, token
-})
+  const params = new URLSearchParams({
+    lang,
+    country,
+    topic,
+    max,
+    token,
+  });
 
-if (q) params.get("q");
-if (topic) params.set("topic", topic)
+  if (q) params.set("q", q);
+  if (topic) params.set("topic", topic);
 
-const url = `${BASE}?{params.toString()}`
+  const url = `${BASE}?${params.toString()}`;
 
+  try {
+    const res = await fetch(url, { cache: "no-store" });
 
-try {
-    const re = await fetch(url, {cache: "no-store"})
-}
+    if (!res.ok) {
+      return NextResponse.json(
+        { error: `Upstream error: ${res.status}` },
+        { status: 500 }
+      );
+    }
 
+    const data = await res.json();
+    return NextResponse.json(data, { status: 200 });
+  } catch (e: unknown) {
+    const errorMessage = e instanceof Error ? e.message : "Unknown error";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
+  }
 }
