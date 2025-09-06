@@ -1,4 +1,7 @@
-import Image from "next/image";
+import dynamic from "next/dynamic";
+
+// クライアントサイト / サーバーサイト の切り分け → 情報搾取の防止
+const NewsClient = dynamic (() => import("./NewsClient"), {ssr:!!false}) 
 
 type ArticleProps = {
   title: string;
@@ -31,6 +34,8 @@ export default async function NewsPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
+      <h1>ニュース検索</h1>
+      <NewsClient/>
       <h1 className="text-2xl font-bold mb-6">最新ニュース</h1>
       <ul className="space-y-6">
         {articles.map((a) => (
