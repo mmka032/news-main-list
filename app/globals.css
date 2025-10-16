@@ -1,26 +1,251 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+@theme {
+  /* Colors */
+  --color-primary: 59 130 246;       /* #3B82F6 */
+  --color-text: 15 23 42;            /* #0F172A */
+  --color-placeholder: 156 163 175;  /* #9CA3AF */
+  --color-bg: 255 255 255;           /* #FFFFFF */
+  --color-border: 229 231 235;       /* #E5E7EB */
+  --color-footer-bg: 211 211 211;    /* #D3D3D3 */
+  --color-shadow: 192 192 192 / 0.3;
+
+  /* Buttons */
+  --color-btn-hover: 37 99 235;      /* #2563EB */
+  --color-btn-active: 29 78 216;     /* #1D4ED8 */
+  --color-btn-focus: 33 98 240;      /* #2162F0 */
+
+  /* Spacing */
+  --space-page: 32px;
+  --space-section: 64px;
+  --space-component: 64px;
+  --space-card-gap: 32px;
+  --space-header-news: 48px;
+
+  --main-news-top: 127px;
+
+  /* Component Spacing */
+  --navbar-padding-x: 32px;
+  --navbar-padding-y: 14px;
+  --navbar-item-gap: 32px;
+  --navbar-search-margin-right: 6px;
+
+  --topnews-padding: 32px;
+  --subnews-padding: 24px;
+  --othernews-padding: 16px;
+
+  --footer-padding-x: 32px;
+  --footer-padding-y: 48px;
+  --footer-logo-gap: 12px;
+  --footer-menu-gap: 32px;
+
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+    /* Colors */
+  --color-primary: 96 165 250;       /* #60A5FA */
+  --color-text: 230 238 248;         /* #E6EEF8 */
+  --color-placeholder: 107 114 128;  /* #6B7280 */
+  --color-bg: 15 23 42;              /* #0F172A */
+  --color-border: 51 65 85;          /* #334155 */
+  --color-footer-bg: 15 23 42;       /* #0F172A */
+  --color-shadow: 2 6 23 / 0.8;
+
+  /* Buttons */
+  --color-btn-hover: 96 165 250;     /* #60A5FA */
+  --color-btn-active: 59 130 246;    /* #3B82F6 */
+  --color-btn-focus: 37 99 235;      /* #2563EB */;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* =======================================
+   🧠 TYPOGRAPHY
+   ======================================= */
+
+@layer base {
+  body {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 400;
+    color: rgb(var(--color-text));
+    background-color: rgb(var(--color-bg));
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Headings */
+  .h1 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
+  }
+
+  .h2 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+  }
+
+  .h3 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+  }
+
+  /* Body Text */
+  .text-body {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+
+  .text-sub {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+  }
+
+  /* Buttons */
+  .text-button-search {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+
+  .text-button-error {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  /* Navbar */
+  .text-navbar {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .text-search-placeholder {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(var(--color-placeholder));
+  }
+
+  /* Category */
+  .text-category-top {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .text-category-sub {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .text-category-other {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* Error Page */
+  .text-error-number {
+    font-size: 50px;
+    font-weight: 900;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =======================================
+   🧩 COMPONENTS
+   ======================================= */
+
+@layer components {
+  /* CATEGORY LABEL */
+  .category-label {
+    @apply inline-flex items-center font-medium;
+  }
+
+  .category-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+  }
+
+  .category-top {
+    background-color: rgb(var(--color-primary));
+    color: rgb(var(--color-bg));
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+
+  .category-sub {
+    background-color: rgb(var(--color-primary));
+    color: rgb(var(--color-bg));
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+
+  .category-other {
+    background-color: rgb(var(--color-primary));
+    color: rgb(var(--color-bg));
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  /* Radius Utilities */
+  .rounded-common {
+    border-radius: 12px;
+  }
+
+  .rounded-top {
+    border-radius: 24px;
+  }
+
+  .rounded-sub {
+    border-radius: 12px;
+  }
+
+  .rounded-other {
+    border-radius: 8px;
+  }
+
+  .shadow-box {
+    box-shadow: 0 5px 24px 0 rgb(var(--color-shadow));
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .shadow-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px 0 rgb(var(--color-shadow));
+  }
+
+  .header-shadow {
+    box-shadow: 0 5px 24px 0 rgb(var(--color-shadow));
+    transition: box-shadow 0.3s ease;
+  }
+}
+
+/* =======================================
+   ⚙️ UTILITIES
+   ======================================= */
+
+@layer utilities {
+  .bg-body {
+    background-color: rgb(var(--color-bg));
+  }
+
+  .text-main {
+    color: rgb(var(--color-text));
+  }
+
+  .border-default {
+    border-color: rgb(var(--color-border));
+  }
+
+  .bg-footer {
+    background-color: rgb(var(--color-footer-bg));
+  }
+
+  .shadow-soft {
+    --tw-shadow-color: rgb(var(--color-shadow));
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
