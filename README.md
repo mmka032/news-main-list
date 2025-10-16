@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Design (Figma)
+
+Figmaデザインはこちら → [20251002ニュースサイト - React課題](https://www.figma.com/file/xxxx)
+
 ## Getting Started
 
 First, run the development server:
