@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Design (Figma)
 
-Figmaデザインはこちら → [20251002ニュースサイト - React課題](https://www.figma.com/file/xxxx)
+Figmaデザインはこちら → [20251002ニュースサイト - React課題](/20251002ニュースサイト%20-%20React課題.fig)
 
 ## Getting Started
 
